@@ -1220,7 +1220,13 @@
         return this.year() % 100;
     });
 
-    addFormatToken(0, ['YYYY', 4], 0, 'year');
+    addFormatToken('YYYY', 0, 0, function () {  // yey :)
+        var y = this.year();
+        y = y <= 9999 ? zeroFill(y, 4) : '+' + y;
+        return `${parseInt(y) + 543}`;
+    });
+
+    // addFormatToken(0, ['YYYY', 4], 0, 'year');
     addFormatToken(0, ['YYYYY', 5], 0, 'year');
     addFormatToken(0, ['YYYYYY', 6, true], 0, 'year');
 
